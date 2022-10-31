@@ -57,5 +57,14 @@ namespace TripAdvisor
                 MessageBox.Show("ok");
             }
         }
+
+        private void CreateCity_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new CreateCity(_context);
+            if (window.ShowDialog() == true)
+            {
+                MessageBox.Show("ok");
+            }
+        }
     }
 }

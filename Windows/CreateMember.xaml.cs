@@ -26,7 +26,7 @@ namespace TripAdvisor.Windows
         public CreateMember(ApplicationContext context)
         {
             InitializeComponent();
-
+            this.DataContext = this;
             _context = context;
 
             Roles = _context.Roles.ToList();
@@ -34,7 +34,8 @@ namespace TripAdvisor.Windows
 
         private void CreateMember_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Member created!");
+            MessageBox.Show("Участник успешно добавлен");
+            DialogResult = true;
         }
     }
 }

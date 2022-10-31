@@ -77,7 +77,7 @@
                    Text="Участники путешествия" TextAlignment="Center" Foreground="White" />
         <Button Grid.Column="1" Content="новый" HorizontalAlignment="Left" Height="22" Margin="415,227,0,0"
                 Grid.Row="1" VerticalAlignment="Top" Width="46" Foreground="White" Background="#FF06D4E2"
-                BorderThickness="0,0,0,0" FontSize="10" />
+                BorderThickness="0,0,0,0" FontSize="10" Click="CreateCity_Click"/>
         <Button Grid.Column="1" Content="из списка" HorizontalAlignment="Left" Height="22" Margin="524,227,0,0"
                 Grid.Row="1" VerticalAlignment="Top" Width="57" Background="#FF06D6E3" Foreground="White"
                 BorderThickness="0,0,0,0" FontSize="10" />
