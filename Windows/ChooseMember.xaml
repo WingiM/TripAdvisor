@@ -17,7 +17,7 @@
                     <DataGridTextColumn Header="Role" Binding="{Binding Role.Name}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="40" Foreground="White" Background="#FF06D4E2" BorderThickness="0" FontSize="20" Content="Выбрать" Click="OkButton_OnClick"></Button>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="40" Foreground="White" Background="#FF06D4E2" BorderThickness="0" FontSize="20" Content="Select" Click="OkButton_OnClick"></Button>
         </StackPanel>
     </Grid>
 </Window>

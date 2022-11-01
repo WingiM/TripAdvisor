@@ -45,13 +45,12 @@ namespace TripAdvisor.Windows
                     var pathParent = Directory.GetParent(path!)?.FullName;
                     var savePath = Directory.GetParent(pathParent!)?.FullName + @"\Images\Cities\";
                     _savedToPath = savePath + $"{System.IO.Path.GetFileNameWithoutExtension(filePath)}.jpg";
-                    File.Copy(filePath, _savedToPath);
-                    MessageBox.Show("Изображение добавлено");
+                    File.Copy(filePath, _savedToPath); 
                 }
                 catch
                 {
-                    MessageBox.Show("Изображение таким именем уже существует!");
                 }
+                MessageBox.Show("Изображение добавлено");
             }
         }
 
