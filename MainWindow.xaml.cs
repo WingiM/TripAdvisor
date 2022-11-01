@@ -39,12 +39,16 @@ namespace TripAdvisor
 
         private void UpdateInfo()
         {
-            if (!int.TryParse(PercentTb.Text, out var percent) || CurrentShip is null || FuelCb.SelectedItem is null)
+            if (!int.TryParse(PercentTb.Text, out var percent) || CurrentShip is null)
                 return;
 
             int totalCost = 0;
-            var fuelType = FuelCb.SelectedItem as Fuel;
-            totalCost += CurrentShip.FuelTankCapacity * fuelType!.Cost;
+            if (FuelCb.SelectedItem is not null)
+            {
+                var fuelType = FuelCb.SelectedItem as Fuel;
+                totalCost += CurrentShip.FuelTankCapacity * fuelType!.Cost;
+            }
+
             var crew = new List<Member>();
             var members = new List<Member>();
             foreach (Member member in MemberListBox.Items)
@@ -114,21 +118,25 @@ namespace TripAdvisor
                 MessageBox.Show("Недостаточно членов экипажа");
                 return;
             }
-            if(MemberListBox.Items.Count <= 0)
+
+            if (MemberListBox.Items.Count <= 0)
             {
                 MessageBox.Show("Необходимо выбрать участников путешествия");
                 return;
             }
+
             if (CitiesLb.Items.Count <= 0)
             {
                 MessageBox.Show("Необходимо выбрать города путешествия");
                 return;
             }
+
             if (FuelCb.SelectedItem is null)
             {
                 MessageBox.Show("Необходимо выбрать тип топлива");
                 return;
             }
+
             if (CurrentShip is null)
             {
                 MessageBox.Show("Необходимо выбрать корабль");
@@ -290,6 +298,7 @@ namespace TripAdvisor
                 FoodListBox.Items.Add(res);
                 MessageBox.Show("ok");
             }
+
             UpdateInfo();
         }
     }
