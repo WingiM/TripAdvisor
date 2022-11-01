@@ -80,25 +80,39 @@ namespace TripAdvisor
             if (!int.TryParse(PercentTb.Text, out var percent))
             {
                 MessageBox.Show("Процент окупаемости - не число");
+                return;
             }
 
             if (!DateTime.TryParse(DateBegin.Text, out var beginDate))
+            {
                 MessageBox.Show("Дата начала - не дата");
+                return;
+            }
 
             if (!DateTime.TryParse(DateBegin.Text, out var endDate))
+            {
                 MessageBox.Show("Дата конца - не дата");
+                return;
+            }
 
             if (endDate <= beginDate)
+            {
                 MessageBox.Show("Неправильно введены даты");
+                return;
+            }
 
             if (MemberListBox.Items.Count > CurrentShip.Capacity)
             {
                 MessageBox.Show("Корабль переполнен");
+                return;
             }
 
             var crew = _context.Members.Where(x => x.RoleId == 1).ToList();
             if (crew.Count < CurrentShip.CrewMembersCount)
+            {
                 MessageBox.Show("Недостаточно членов экипажа");
+                return;
+            }
 
             var travel = new Trip
             {
