@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -131,6 +132,7 @@ namespace TripAdvisor
                 var tripMember = new TripMember { Member = member, Trip = travel };
                 travel.TripMembers.Add(tripMember);
             }
+
             _context.Add(travel);
             _context.SaveChanges();
         }
@@ -143,6 +145,7 @@ namespace TripAdvisor
                 CurrentShip = window.SelectedShip;
                 ShipBlock.Text = CurrentShip.Name;
             }
+
             UpdateInfo();
         }
 
@@ -171,6 +174,7 @@ namespace TripAdvisor
             {
                 existingMembers.Add(member.Id);
             }
+
             var window = new ChooseMember(_context, existingMembers.ToArray());
             if (window.ShowDialog() == true)
             {
@@ -190,7 +194,7 @@ namespace TripAdvisor
         private void ChooseCity_OnClick(object sender, RoutedEventArgs e)
         {
             var window = new ChooseCity(_context);
-            if(window.ShowDialog() == true)
+            if (window.ShowDialog() == true)
             {
                 var res = window.SelectedCity;
                 CitiesLb.Items.Add(res);
@@ -201,6 +205,27 @@ namespace TripAdvisor
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             SaveTrip();
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            NewTrip();
+        }
+
+        private void NewTrip()
+        {
+            ShipBlock.Text = "";
+            PercentTb.Text = "0";
+            TravelCostTb.Text = "0";
+            TicketCostTb.Text = "0";
+            ProfitTb.Text = "0";
+            CurrentShip = null;
+            FuelCb.SelectedItem = null;
+            DateBegin.Text = DateTime.MinValue.ToString(CultureInfo.InvariantCulture);
+            DateEnd.Text = DateTime.MinValue.ToString(CultureInfo.InvariantCulture);
+            FoodListBox.Items.Clear();
+            MemberListBox.Items.Clear();
+            CitiesLb.Items.Clear();
         }
     }
 }
