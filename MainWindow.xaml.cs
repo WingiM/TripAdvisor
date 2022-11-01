@@ -89,7 +89,7 @@ namespace TripAdvisor
                 return;
             }
 
-            if (!DateTime.TryParse(DateBegin.Text, out var endDate))
+            if (!DateTime.TryParse(DateEnd.Text, out var endDate))
             {
                 MessageBox.Show("Дата конца - не дата");
                 return;
@@ -131,7 +131,6 @@ namespace TripAdvisor
                 var tripMember = new TripMember { Member = member, Trip = travel };
                 travel.TripMembers.Add(tripMember);
             }
-
             _context.Add(travel);
             _context.SaveChanges();
         }

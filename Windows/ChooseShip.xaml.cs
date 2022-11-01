@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,7 +20,7 @@ public partial class ChooseShip : Window
         InitializeComponent();
         this.DataContext = this;
         
-        Ships = context.Ships.ToList();
+        Ships = context.Ships.AsNoTracking().ToList();
         var path = Directory.GetParent($"{Directory.GetCurrentDirectory()}")?.FullName;
         var pathPArent = Directory.GetParent(path!)?.FullName;
         var savePath = Directory.GetParent(pathPArent!)?.FullName + @"\Images\Ships\";

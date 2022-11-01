@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,15 +32,15 @@ namespace TripAdvisor.Windows
 
             _context = context;
 
-            Cities = _context.Cities.ToList();
+            Cities = _context.Cities.AsNoTracking().ToList();
             CitiesDg.ItemsSource = Cities;
             var path = Directory.GetParent($"{Directory.GetCurrentDirectory()}")?.FullName;
             var pathPArent = Directory.GetParent(path!)?.FullName;
             var savePath = Directory.GetParent(pathPArent!)?.FullName + @"\Images\Cities\";
 
-            foreach (var ship in Cities)
+            foreach (var city in Cities)
             {
-                ship.Image = savePath + @"\" + ship.Name + ".jpg";
+                city.Image = savePath + @"\" + city.Name + ".jpg";
             }
         }
 
