@@ -40,11 +40,20 @@ namespace TripAdvisor
         {
             if (!int.TryParse(PercentTb.Text, out var percent) || CurrentShip is null || FuelCb.SelectedItem is null)
                 return;
-            
+
             int totalCost = 0;
             var fuelType = FuelCb.SelectedItem as Fuel;
             totalCost += CurrentShip.FuelTankCapacity * fuelType!.Cost;
-            var crew = _context.Members.Where(x => x.RoleId == 1).ToList();
+            var crew = new List<Member>();
+            var members = new List<Member>();
+            foreach (Member member in MemberListBox.Items)
+            {
+                if (member.RoleId == 1)
+                    crew.Add(member);
+                else
+                    members.Add(member);
+            }
+
             foreach (var crewMember in crew)
             {
                 totalCost += _context.CrewSalaries.First(x => x.CrewMemberId == crewMember.Id).Salary;
@@ -55,11 +64,15 @@ namespace TripAdvisor
                 totalCost += food.Cost;
             }
 
-            var costToComplete = totalCost *= percent / 100;
-            var ticketCost = costToComplete / (MemberListBox.Items.Count - crew.Count);
-            
+            double pc = 1 + (percent / 100.0);
+            var costToComplete = totalCost * pc;
+            var ticketCost = 0;
+            if (crew.Count != MemberListBox.Items.Count)
+                ticketCost = (int)costToComplete / (MemberListBox.Items.Count - crew.Count);
+
             TravelCostTb.Text = totalCost.ToString();
             TicketCostTb.Text = ticketCost.ToString();
+            ProfitTb.Text = ((members.Count * ticketCost) - totalCost).ToString();
         }
 
         private void SaveTrip()
@@ -86,6 +99,27 @@ namespace TripAdvisor
             var crew = _context.Members.Where(x => x.RoleId == 1).ToList();
             if (crew.Count < CurrentShip.CrewMembersCount)
                 MessageBox.Show("Недостаточно членов экипажа");
+
+            var travel = new Trip
+            {
+                DateFrom = beginDate, DateTo = endDate, ShipName = CurrentShip.Name,
+                TicketCost = int.Parse(TicketCostTb.Text)
+            };
+
+            foreach (City city in CitiesListBox.Items)
+            {
+                var tripCity = new TripCity { City = city, Trip = travel };
+                travel.TripCities.Add(tripCity);
+            }
+
+            foreach (Member member in MemberListBox.Items)
+            {
+                var tripMember = new TripMember { Member = member, Trip = travel };
+                travel.TripMembers.Add(tripMember);
+            }
+
+            _context.Add(travel);
+            _context.SaveChanges();
         }
 
         private void ChooseShip_OnClick(object sender, RoutedEventArgs e)
@@ -126,6 +160,12 @@ namespace TripAdvisor
                 MemberListBox.Items.Add(res);
                 MessageBox.Show("ok");
             }
+
+            UpdateInfo();
+        }
+
+        private void PercentTb_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
             UpdateInfo();
         }
 
