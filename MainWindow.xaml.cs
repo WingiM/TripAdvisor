@@ -114,6 +114,32 @@ namespace TripAdvisor
                 MessageBox.Show("Недостаточно членов экипажа");
                 return;
             }
+            if(MemberListBox.Items.Count <= 0)
+            {
+                MessageBox.Show("Необходимо выбрать участников путешествия");
+                return;
+            }
+            if (CitiesLb.Items.Count <= 0)
+            {
+                MessageBox.Show("Необходимо выбрать города путешествия");
+                return;
+            }
+            if (FuelCb.SelectedItem is null)
+            {
+                MessageBox.Show("Необходимо выбрать тип топлива");
+                return;
+            }
+            if (CurrentShip is null)
+            {
+                MessageBox.Show("Необходимо выбрать корабль");
+                return;
+            }
+            //if (CitiesLb.Items.Count <= 0)
+            //{
+            //    Checking food stash
+            //    MessageBox.Show("Необходимо выбрать города путешествия");
+            //    return;
+            //}
 
             var travel = new Trip
             {
@@ -145,6 +171,10 @@ namespace TripAdvisor
                 CurrentShip = window.SelectedShip;
                 ShipBlock.Text = CurrentShip.Name;
             }
+            else
+            {
+                MessageBox.Show("Error!", "Error");
+            }
 
             UpdateInfo();
         }
@@ -156,6 +186,10 @@ namespace TripAdvisor
             {
                 MessageBox.Show("ok");
             }
+            else
+            {
+                MessageBox.Show("Error!", "Error");
+            }
         }
 
         private void CreateCity_Click(object sender, RoutedEventArgs e)
@@ -164,6 +198,10 @@ namespace TripAdvisor
             if (window.ShowDialog() == true)
             {
                 MessageBox.Show("ok");
+            }
+            else
+            {
+                MessageBox.Show("Error!", "Error");
             }
         }
 
@@ -182,6 +220,10 @@ namespace TripAdvisor
                 MemberListBox.Items.Add(res);
                 MessageBox.Show("ok");
             }
+            else
+            {
+                MessageBox.Show("Error!", "Error");
+            }
 
             UpdateInfo();
         }
@@ -199,6 +241,10 @@ namespace TripAdvisor
                 var res = window.SelectedCity;
                 CitiesLb.Items.Add(res);
                 MessageBox.Show("ok");
+            }
+            else
+            {
+                MessageBox.Show("Error!", "Error");
             }
         }
 

@@ -34,6 +34,13 @@ public partial class ChooseShip : Window
     private void Ok_OnClick(object sender, RoutedEventArgs e)
     {
         SelectedShip = ShipsDg.SelectedItem as Ship;
-        DialogResult = true;
+        if(SelectedShip is not null)
+        {
+            DialogResult = true;
+        }
+        else
+        {
+            DialogResult = false;
+        }
     }
 }

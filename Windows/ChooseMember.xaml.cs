@@ -23,6 +23,13 @@ public partial class ChooseMember : Window
     private void OkButton_OnClick(object sender, RoutedEventArgs e)
     {
         SelectedMember = MainDataGrid.SelectedItem as Member;
-        DialogResult = true;
+        if (SelectedMember is not null)
+        {
+            DialogResult = true;
+        }
+        else
+        {
+            DialogResult = false;
+        }
     }
 }

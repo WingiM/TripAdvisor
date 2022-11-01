@@ -56,11 +56,19 @@ namespace TripAdvisor.Windows
 
         private void CreateCity_Click(object sender, RoutedEventArgs e)
         {
-            var city = new City { Name = CityName.Text, Image = System.IO.Path.GetFileName(_savedToPath) };
-            _context.Add(city);
-            _context.SaveChanges();
-            MessageBox.Show("Город успешно добавлен");
-            DialogResult = true;
+            if(string.IsNullOrEmpty(CityName.Text))
+            {
+                MessageBox.Show("Неправильно заполнены данные!");
+                DialogResult = false;
+            }
+            else
+            {
+                var city = new City { Name = CityName.Text, Image = System.IO.Path.GetFileName(_savedToPath) };
+                _context.Add(city);
+                _context.SaveChanges();
+                MessageBox.Show("Город успешно добавлен");
+                DialogResult = true;
+            }
         }
     }
 }

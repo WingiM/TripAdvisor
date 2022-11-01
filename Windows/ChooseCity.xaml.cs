@@ -47,7 +47,14 @@ namespace TripAdvisor.Windows
         private void SelectCity_OnClick(object sender, RoutedEventArgs e)
         {
             SelectedCity = CitiesDg.SelectedItem as City;
-            DialogResult = true;
+            if(SelectedCity is not null)
+            {
+                DialogResult = true;
+            }
+            else
+            {
+                DialogResult = false;
+            }
         }
     }
 }
