@@ -93,14 +93,14 @@
         <Button Click="SelectMember_OnClick" Grid.Column="1" Content="из списка" HorizontalAlignment="Left" Height="20" Margin="524,475,0,0"
                 Grid.Row="1" VerticalAlignment="Top" Width="57" Background="#FF06D6E3" Foreground="White"
                 BorderThickness="0,0,0,0" FontSize="10" />
-        <ListBox x:Name="FoodListBox" ItemsSource="{Binding Foods}" Grid.Column="1" HorizontalAlignment="Left" Height="195" Margin="627,28,0,0" Grid.Row="1"
+        <ListBox x:Name="FoodListBox" Grid.Column="1" HorizontalAlignment="Left" Height="195" Margin="627,28,0,0" Grid.Row="1"
                     VerticalAlignment="Top" Width="178" Background="#FFE6E6E6" Padding="6,2,2,2" />
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="638,3,0,0" Grid.Row="1"
                    TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontFamily="Century Gothic" FontSize="14"
                    Text="Провизия" Foreground="White" TextAlignment="Center" />
-        <Button Grid.Column="1" Content="добавить" Height="21" Margin="682,228,0,0" Grid.Row="1"
+        <Button x:Name="btnAddFood" Grid.Column="1" Content="добавить" Height="21" Margin="682,228,0,0" Grid.Row="1"
                 VerticalAlignment="Top" Foreground="White" Background="#FF06D4E2" BorderThickness="0,0,0,0"
-                FontSize="10" HorizontalAlignment="Left" Width="62" />
+                FontSize="10" HorizontalAlignment="Left" Width="62" Click="btnAddFood_Click" />
         <TextBox  x:Name="TicketCostTb" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="129,285,0,0" Grid.Row="1"
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Background="#FFE6E6E6" BorderBrush="#FFDDDDDD"
                  FontFamily="Century Gothic" Padding="7,5,1,1" BorderThickness="0,0,0,0" Foreground="#FF003981"

@@ -59,9 +59,9 @@ namespace TripAdvisor
                 totalCost += _context.CrewSalaries.First(x => x.CrewMemberId == crewMember.Id).Salary;
             }
 
-            foreach (Food food in FoodListBox.Items)
+            foreach (TripFood dto in FoodListBox.Items)
             {
-                totalCost += food.Cost;
+                totalCost += dto.Food!.Cost * dto.Count;
             }
 
             double pc = 1 + (percent / 100.0);
@@ -202,6 +202,25 @@ namespace TripAdvisor
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             SaveTrip();
+        }
+
+        private void btnAddFood_Click(object sender, RoutedEventArgs e)
+        {
+            var exsistingFood = new List<int>();
+
+            foreach (TripFood tripFood in FoodListBox.Items)
+            {
+                exsistingFood.Add(tripFood.Food!.Id);
+            }
+
+            var window = new AddFood(_context, exsistingFood.ToArray());
+            if (window.ShowDialog() == true)
+            {
+                var res = window.ChosenTripFood;
+                FoodListBox.Items.Add(res);
+                MessageBox.Show("ok");
+            }
+            UpdateInfo();
         }
     }
 }
