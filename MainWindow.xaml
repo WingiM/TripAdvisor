@@ -116,7 +116,11 @@
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Background="#FFE6E6E6" BorderBrush="#FFDDDDDD"
                  FontFamily="Century Gothic" Padding="5,5,1,1" BorderThickness="0,0,0,0" Foreground="#FF003981"
                  Text="0" TextAlignment="Center" TextChanged="PercentTb_OnTextChanged" />
-        <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="50" Margin="100,350,0,0" Content="Save" Click="Button_Click_1"/>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="70,360,360,0">
+            <Button HorizontalAlignment="Left" Height="50" Content="Save" Click="Button_Click_1" Foreground="White" Background="#2a9299" BorderThickness="0" Width="100" Margin="0,0,20,0"/>
+            <Button HorizontalAlignment="Left" Height="50" Content="New" Click="ButtonBase_OnClick"  Foreground="White" Background="#2a9299" BorderThickness="0" Width="100"/>
+        </StackPanel>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="27" Margin="228,372,0,0" Grid.Row="1"
                    TextWrapping="Wrap" VerticalAlignment="Top" Width="19" FontFamily="Century Gothic" Text="%"
                    Foreground="White" FontSize="20" />

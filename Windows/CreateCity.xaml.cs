@@ -45,23 +45,30 @@ namespace TripAdvisor.Windows
                     var pathParent = Directory.GetParent(path!)?.FullName;
                     var savePath = Directory.GetParent(pathParent!)?.FullName + @"\Images\Cities\";
                     _savedToPath = savePath + $"{System.IO.Path.GetFileNameWithoutExtension(filePath)}.jpg";
-                    File.Copy(filePath, _savedToPath);
-                    MessageBox.Show("Изображение добавлено");
+                    File.Copy(filePath, _savedToPath); 
                 }
                 catch
                 {
-                    MessageBox.Show("Изображение таким именем уже существует!");
                 }
+                MessageBox.Show("Изображение добавлено");
             }
         }
 
         private void CreateCity_Click(object sender, RoutedEventArgs e)
         {
-            var city = new City { Name = CityName.Text, Image = System.IO.Path.GetFileName(_savedToPath) };
-            _context.Add(city);
-            _context.SaveChanges();
-            MessageBox.Show("Город успешно добавлен");
-            DialogResult = true;
+            if(string.IsNullOrEmpty(CityName.Text))
+            {
+                MessageBox.Show("Неправильно заполнены данные!");
+                DialogResult = false;
+            }
+            else
+            {
+                var city = new City { Name = CityName.Text, Image = System.IO.Path.GetFileName(_savedToPath) };
+                _context.Add(city);
+                _context.SaveChanges();
+                MessageBox.Show("Город успешно добавлен");
+                DialogResult = true;
+            }
         }
     }
 }

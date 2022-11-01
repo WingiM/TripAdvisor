@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,7 +90,7 @@ namespace TripAdvisor
                 return;
             }
 
-            if (!DateTime.TryParse(DateBegin.Text, out var endDate))
+            if (!DateTime.TryParse(DateEnd.Text, out var endDate))
             {
                 MessageBox.Show("Дата конца - не дата");
                 return;
@@ -113,6 +114,32 @@ namespace TripAdvisor
                 MessageBox.Show("Недостаточно членов экипажа");
                 return;
             }
+            if(MemberListBox.Items.Count <= 0)
+            {
+                MessageBox.Show("Необходимо выбрать участников путешествия");
+                return;
+            }
+            if (CitiesLb.Items.Count <= 0)
+            {
+                MessageBox.Show("Необходимо выбрать города путешествия");
+                return;
+            }
+            if (FuelCb.SelectedItem is null)
+            {
+                MessageBox.Show("Необходимо выбрать тип топлива");
+                return;
+            }
+            if (CurrentShip is null)
+            {
+                MessageBox.Show("Необходимо выбрать корабль");
+                return;
+            }
+            //if (CitiesLb.Items.Count <= 0)
+            //{
+            //    Checking food stash
+            //    MessageBox.Show("Необходимо выбрать города путешествия");
+            //    return;
+            //}
 
             var travel = new Trip
             {
@@ -144,6 +171,11 @@ namespace TripAdvisor
                 CurrentShip = window.SelectedShip;
                 ShipBlock.Text = CurrentShip.Name;
             }
+            else
+            {
+                MessageBox.Show("Error!", "Error");
+            }
+
             UpdateInfo();
         }
 
@@ -154,6 +186,10 @@ namespace TripAdvisor
             {
                 MessageBox.Show("ok");
             }
+            else
+            {
+                MessageBox.Show("Error!", "Error");
+            }
         }
 
         private void CreateCity_Click(object sender, RoutedEventArgs e)
@@ -162,6 +198,10 @@ namespace TripAdvisor
             if (window.ShowDialog() == true)
             {
                 MessageBox.Show("ok");
+            }
+            else
+            {
+                MessageBox.Show("Error!", "Error");
             }
         }
 
@@ -172,12 +212,17 @@ namespace TripAdvisor
             {
                 existingMembers.Add(member.Id);
             }
+
             var window = new ChooseMember(_context, existingMembers.ToArray());
             if (window.ShowDialog() == true)
             {
                 var res = window.SelectedMember;
                 MemberListBox.Items.Add(res);
                 MessageBox.Show("ok");
+            }
+            else
+            {
+                MessageBox.Show("Error!", "Error");
             }
 
             UpdateInfo();
@@ -191,17 +236,42 @@ namespace TripAdvisor
         private void ChooseCity_OnClick(object sender, RoutedEventArgs e)
         {
             var window = new ChooseCity(_context);
-            if(window.ShowDialog() == true)
+            if (window.ShowDialog() == true)
             {
                 var res = window.SelectedCity;
                 CitiesLb.Items.Add(res);
                 MessageBox.Show("ok");
+            }
+            else
+            {
+                MessageBox.Show("Error!", "Error");
             }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             SaveTrip();
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            NewTrip();
+        }
+
+        private void NewTrip()
+        {
+            ShipBlock.Text = "";
+            PercentTb.Text = "0";
+            TravelCostTb.Text = "0";
+            TicketCostTb.Text = "0";
+            ProfitTb.Text = "0";
+            CurrentShip = null;
+            FuelCb.SelectedItem = null;
+            DateBegin.Text = DateTime.MinValue.ToString(CultureInfo.InvariantCulture);
+            DateEnd.Text = DateTime.MinValue.ToString(CultureInfo.InvariantCulture);
+            FoodListBox.Items.Clear();
+            MemberListBox.Items.Clear();
+            CitiesLb.Items.Clear();
         }
 
         private void btnAddFood_Click(object sender, RoutedEventArgs e)

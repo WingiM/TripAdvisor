@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:TripAdvisor.Windows"
         mc:Ignorable="d"
-        Title="ChooseMember" Height="450" Width="800">
+        Title="ChooseMember" Height="800" Width="800">
     <Grid>
         <StackPanel Orientation="Vertical">
 
@@ -17,7 +17,7 @@
                     <DataGridTextColumn Header="Role" Binding="{Binding Role.Name}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="Choose" Click="OkButton_OnClick"/>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="40" Foreground="White" Background="#FF06D4E2" BorderThickness="0" FontSize="20" Content="Select" Click="OkButton_OnClick"></Button>
         </StackPanel>
     </Grid>
 </Window>
