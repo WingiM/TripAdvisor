@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,12 +19,20 @@ public partial class ChooseShip : Window
         InitializeComponent();
         this.DataContext = this;
         
-        // TODO: show images and names in window to select
         Ships = context.Ships.ToList();
+        var path = Directory.GetParent($"{Directory.GetCurrentDirectory()}")?.FullName;
+        var pathPArent = Directory.GetParent(path!)?.FullName;
+        var savePath = Directory.GetParent(pathPArent!)?.FullName + @"\Images\Ships\";
+
+        foreach(var ship in Ships)
+        {
+            ship.Image = savePath + @"\" + ship.Name + ".jpg";
+        }
     }
 
     private void Ok_OnClick(object sender, RoutedEventArgs e)
     {
+        SelectedShip = ShipsDg.SelectedItem as Ship;
         DialogResult = true;
     }
 }

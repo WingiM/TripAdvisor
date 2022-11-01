@@ -93,9 +93,10 @@ namespace TripAdvisor
             var window = new ChooseShip(_context);
             if (window.ShowDialog() == true)
             {
-                CurrentShip = _context.Ships.First(x => x.Id == 1);
+                CurrentShip = window.SelectedShip;
                 ShipBlock.Text = CurrentShip.Name;
             }
+            UpdateInfo();
         }
 
         private void CreateMember_Click(object sender, RoutedEventArgs e)
@@ -126,6 +127,17 @@ namespace TripAdvisor
                 MessageBox.Show("ok");
             }
             UpdateInfo();
+        }
+
+        private void ChooseCity_OnClick(object sender, RoutedEventArgs e)
+        {
+            var window = new ChooseCity(_context);
+            if(window.ShowDialog() == true)
+            {
+                var res = window.SelectedCity;
+                CitiesLb.Items.Add(res);
+                MessageBox.Show("ok");
+            }
         }
     }
 }

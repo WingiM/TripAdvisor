@@ -65,7 +65,7 @@
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Background="#FFE6E6E6" BorderBrush="#FFDDDDDD"
                  FontFamily="Century Gothic" Padding="7,5,1,1" BorderThickness="0,0,0,0" Foreground="#FF003981"
                  Text="0" />
-        <ListBox ItemsSource="{Binding Cities}" Grid.Column="1" HorizontalAlignment="Left" Height="194" Margin="405,28,0,0" Grid.Row="1"
+        <ListBox x:Name="CitiesLb" ItemsSource="{Binding Cities}" Grid.Column="1" HorizontalAlignment="Left" Height="194" Margin="405,28,0,0" Grid.Row="1"
                    VerticalAlignment="Top" Width="181" Background="#FFE6E6E6" Padding="6,2,2,2" />
         <ListBox x:Name="MemberListBox" ItemsSource="{Binding Members}" Grid.Column="1" HorizontalAlignment="Left" Height="186" Margin="405,284,0,0" Grid.Row="1"
                    VerticalAlignment="Top" Width="181" Background="#FFE6E6E6" Padding="6,2,2,2" >
@@ -86,7 +86,7 @@
                 BorderThickness="0,0,0,0" FontSize="10" Click="CreateCity_Click"/>
         <Button Grid.Column="1" Content="из списка" HorizontalAlignment="Left" Height="22" Margin="524,227,0,0"
                 Grid.Row="1" VerticalAlignment="Top" Width="57" Background="#FF06D6E3" Foreground="White"
-                BorderThickness="0,0,0,0" FontSize="10" />
+                BorderThickness="0,0,0,0" FontSize="10" Click="ChooseCity_OnClick"/>
         <Button Grid.Column="1" Content="новый" HorizontalAlignment="Left" Height="20" Margin="415,475,0,0"
                 Grid.Row="1" VerticalAlignment="Top" Width="46" Foreground="White" Background="#FF06D4E2"
                 BorderThickness="0,0,0,0" FontSize="10" Click="CreateMember_Click"/>
