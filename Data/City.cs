@@ -15,5 +15,7 @@ namespace TripAdvisor.Data
         public string? Image { get; set; }
 
         public virtual ICollection<TripCity> TripCities { get; set; }
+
+        public override string ToString() => Name;
     }
 }

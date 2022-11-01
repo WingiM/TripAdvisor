@@ -106,7 +106,7 @@ namespace TripAdvisor
                 TicketCost = int.Parse(TicketCostTb.Text)
             };
 
-            foreach (City city in CitiesListBox.Items)
+            foreach (City city in CitiesLb.Items)
             {
                 var tripCity = new TripCity { City = city, Trip = travel };
                 travel.TripCities.Add(tripCity);
@@ -178,6 +178,11 @@ namespace TripAdvisor
                 CitiesLb.Items.Add(res);
                 MessageBox.Show("ok");
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            SaveTrip();
         }
     }
 }
