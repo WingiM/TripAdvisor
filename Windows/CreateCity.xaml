@@ -27,7 +27,7 @@
                 <TextBlock Height="30" 
                    TextWrapping="Wrap" Width="100" FontFamily="Century Gothic" FontSize="14"
                    Text="Имя" Foreground="White" TextAlignment="Left"/>
-                <TextBox Height="30" 
+                <TextBox Height="30" x:Name="CityName"
                  TextWrapping="Wrap" Width="200" Background="#FFE6E6E6" BorderBrush="#FFDDDDDD"
                  FontFamily="Century Gothic" Padding="7,5,1,1" BorderThickness="0,0,0,0" Foreground="#FF003981"/>
             </StackPanel>

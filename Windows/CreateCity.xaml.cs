@@ -23,7 +23,9 @@ namespace TripAdvisor.Windows
     /// </summary>
     public partial class CreateCity : Window
     {
+        private string _savedToPath;
         private readonly ApplicationContext _context;
+
         public CreateCity(ApplicationContext context)
         {
             InitializeComponent();
@@ -33,19 +35,20 @@ namespace TripAdvisor.Windows
         private void ImageDownload_Click(object sender, RoutedEventArgs e)
         {
             string filePath;
-            OpenFileDialog openFileDialog = new ();
+            OpenFileDialog openFileDialog = new();
             if (openFileDialog.ShowDialog() == true)
             {
                 try
                 {
                     filePath = openFileDialog.FileName;
                     var path = Directory.GetParent($"{Directory.GetCurrentDirectory()}")?.FullName;
-                    var pathPArent = Directory.GetParent(path!)?.FullName;
-                    var savePath = Directory.GetParent(pathPArent!)?.FullName + @"\Images\Cities\";
-                    File.Copy(filePath, savePath + $"{System.IO.Path.GetFileNameWithoutExtension(filePath)}.jpg");
+                    var pathParent = Directory.GetParent(path!)?.FullName;
+                    var savePath = Directory.GetParent(pathParent!)?.FullName + @"\Images\Cities\";
+                    _savedToPath = savePath + $"{System.IO.Path.GetFileNameWithoutExtension(filePath)}.jpg";
+                    File.Copy(filePath, _savedToPath);
                     MessageBox.Show("Изображение добавлено");
                 }
-                catch 
+                catch
                 {
                     MessageBox.Show("Изображение таким именем уже существует!");
                 }
@@ -54,6 +57,9 @@ namespace TripAdvisor.Windows
 
         private void CreateCity_Click(object sender, RoutedEventArgs e)
         {
+            var city = new City { Name = CityName.Text, Image = System.IO.Path.GetFileName(_savedToPath) };
+            _context.Add(city);
+            _context.SaveChanges();
             MessageBox.Show("Город успешно добавлен");
             DialogResult = true;
         }

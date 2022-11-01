@@ -34,6 +34,15 @@ namespace TripAdvisor.Windows
 
         private void CreateMember_Click(object sender, RoutedEventArgs e)
         {
+            if (!int.TryParse(AgeTb.Text, out var age))
+                MessageBox.Show("Возраст должен быть числом");
+            var member = new Member
+            {
+                Name = NameTb.Text, Age = age, Gender = GenderTb.Text,
+                RoleId = (RoleCb.SelectedItem as Role).Id
+            };
+            _context.Add(member);
+            _context.SaveChanges();
             MessageBox.Show("Участник успешно добавлен");
             DialogResult = true;
         }
