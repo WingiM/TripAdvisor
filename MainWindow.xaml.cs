@@ -167,7 +167,12 @@ namespace TripAdvisor
 
         private void SelectMember_OnClick(object sender, RoutedEventArgs e)
         {
-            var window = new ChooseMember(_context);
+            List<int> existingMembers = new List<int>();
+            foreach (Member member in MemberListBox.Items)
+            {
+                existingMembers.Add(member.Id);
+            }
+            var window = new ChooseMember(_context, existingMembers.ToArray());
             if (window.ShowDialog() == true)
             {
                 var res = window.SelectedMember;
