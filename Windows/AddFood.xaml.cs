@@ -20,7 +20,7 @@ namespace TripAdvisor.Windows
     /// </summary>
     public partial class AddFood : Window
     {
-        public TripFood? ChosenTripFood { get; set; }
+        public FoodDto? ChosenTripFood { get; set; }
         public List<Food> AvailableFood { get; set; }
 
         private readonly ApplicationContext _context;
@@ -37,7 +37,7 @@ namespace TripAdvisor.Windows
 
         private void Choose_Click(object sender, RoutedEventArgs e)
         {
-            ChosenTripFood = new TripFood 
+            ChosenTripFood = new FoodDto 
             { 
                 Count = int.Parse(CountTb.Text), 
                 Food = FoodDataGrid.SelectedItem as Food 

@@ -1,6 +1,6 @@
 ﻿namespace TripAdvisor.Data
 {
-    public class TripFood
+    public class FoodDto
     {
         public Food? Food { get; set; }
         public int Count { get; set; }

@@ -64,7 +64,7 @@ namespace TripAdvisor
                 totalCost += _context.CrewSalaries.First(x => x.CrewMemberId == crewMember.Id).Salary;
             }
 
-            foreach (TripFood dto in FoodListBox.Items)
+            foreach (FoodDto dto in FoodListBox.Items)
             {
                 totalCost += dto.Food!.Cost * dto.Count;
             }
@@ -142,12 +142,6 @@ namespace TripAdvisor
                 MessageBox.Show("Необходимо выбрать корабль");
                 return;
             }
-            //if (CitiesLb.Items.Count <= 0)
-            //{
-            //    Checking food stash
-            //    MessageBox.Show("Необходимо выбрать города путешествия");
-            //    return;
-            //}
 
             var travel = new Trip
             {
@@ -288,7 +282,7 @@ namespace TripAdvisor
         {
             var exsistingFood = new List<int>();
 
-            foreach (TripFood tripFood in FoodListBox.Items)
+            foreach (FoodDto tripFood in FoodListBox.Items)
             {
                 exsistingFood.Add(tripFood.Food!.Id);
             }
