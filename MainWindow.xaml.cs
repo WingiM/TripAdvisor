@@ -169,6 +169,7 @@ namespace TripAdvisor
 
             _context.Add(travel);
             _context.SaveChanges();
+            MessageBox.Show("Сохранение прошло успешно!");
         }
 
         private void ChooseShip_OnClick(object sender, RoutedEventArgs e)
