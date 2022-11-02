@@ -157,7 +157,7 @@ namespace TripAdvisor
 
             foreach (City city in CitiesLb.Items)
             {
-                var tripCity = new TripCity { City = city, Trip = travel };
+                var tripCity = new TripCity { CityId = city.Id, Trip = travel };
                 travel.TripCities.Add(tripCity);
             }
 
@@ -169,7 +169,8 @@ namespace TripAdvisor
 
             _context.Add(travel);
             _context.SaveChanges();
-            MessageBox.Show("Сохранение прошло успешно!");
+            MessageBox.Show("Удачного пути!");
+            NewTrip();
         }
 
         private void ChooseShip_OnClick(object sender, RoutedEventArgs e)
