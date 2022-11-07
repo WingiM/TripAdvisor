@@ -80,69 +80,78 @@ namespace TripAdvisor
             ProfitTb.Text = ((members.Count * ticketCost) - totalCost).ToString();
         }
 
-        private void SaveTrip()
+        private bool CheckFields()
         {
             if (!int.TryParse(PercentTb.Text, out var percent))
             {
                 MessageBox.Show("Процент окупаемости - не число");
-                return;
+                return false;
             }
 
             if (!DateTime.TryParse(DateBegin.Text, out var beginDate))
             {
                 MessageBox.Show("Дата начала - не дата");
-                return;
+                return false;
             }
 
             if (!DateTime.TryParse(DateEnd.Text, out var endDate))
             {
                 MessageBox.Show("Дата конца - не дата");
-                return;
+                return false;
             }
 
             if (endDate <= beginDate)
             {
                 MessageBox.Show("Неправильно введены даты");
-                return;
+                return false;
             }
 
             if (MemberListBox.Items.Count > CurrentShip.Capacity)
             {
                 MessageBox.Show("Корабль переполнен");
-                return;
+                return false;
             }
 
             var crew = _context.Members.Where(x => x.RoleId == 1).ToList();
             if (crew.Count < CurrentShip.CrewMembersCount)
             {
                 MessageBox.Show("Недостаточно членов экипажа");
-                return;
+                return false;
             }
 
             if (MemberListBox.Items.Count <= 0)
             {
                 MessageBox.Show("Необходимо выбрать участников путешествия");
-                return;
+                return false;
             }
 
             if (CitiesLb.Items.Count <= 0)
             {
                 MessageBox.Show("Необходимо выбрать города путешествия");
-                return;
+                return false;
             }
 
             if (FuelCb.SelectedItem is null)
             {
                 MessageBox.Show("Необходимо выбрать тип топлива");
-                return;
+                return false;
             }
 
             if (CurrentShip is null)
             {
                 MessageBox.Show("Необходимо выбрать корабль");
-                return;
+                return false;
             }
 
+            return true;
+        }
+
+        private void SaveTrip()
+        {
+            if (!CheckFields())
+                return;
+            DateTime.TryParse(DateBegin.Text, out var beginDate);
+            DateTime.TryParse(DateEnd.Text, out var endDate);
             var travel = new Trip
             {
                 DateFrom = beginDate, DateTo = endDate, ShipName = CurrentShip.Name,
