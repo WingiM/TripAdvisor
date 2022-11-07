@@ -252,12 +252,12 @@ namespace TripAdvisor
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void SaveTripButton_OnClick(object sender, RoutedEventArgs e)
         {
             SaveTrip();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void CreateNewTripButton_OnClick(object sender, RoutedEventArgs e)
         {
             NewTrip();
         }
@@ -278,7 +278,7 @@ namespace TripAdvisor
             CitiesLb.Items.Clear();
         }
 
-        private void btnAddFood_Click(object sender, RoutedEventArgs e)
+        private void AddFoodButton_OnClick(object sender, RoutedEventArgs e)
         {
             var exsistingFood = new List<int>();
 

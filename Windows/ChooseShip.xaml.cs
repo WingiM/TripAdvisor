@@ -1,14 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
+using Microsoft.EntityFrameworkCore;
 using TripAdvisor.Data;
 
-namespace TripAdvisor;
+namespace TripAdvisor.Windows;
 
 public partial class ChooseShip : Window
 {
@@ -31,7 +28,7 @@ public partial class ChooseShip : Window
         }
     }
 
-    private void Ok_OnClick(object sender, RoutedEventArgs e)
+    private void SelectButton_OnClick(object sender, RoutedEventArgs e)
     {
         SelectedShip = ShipsDg.SelectedItem as Ship;
         if(SelectedShip is not null)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TripAdvisor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="900">
+        Title="TripAdvisor" Height="600" Width="900" ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/1612758370_122-p-goluboi-fon-odnotonnii-gradient-147.jpg" />
@@ -100,7 +100,7 @@
                    Text="Провизия" Foreground="White" TextAlignment="Center" />
         <Button x:Name="btnAddFood" Grid.Column="1" Content="добавить" Height="21" Margin="682,228,0,0" Grid.Row="1"
                 VerticalAlignment="Top" Foreground="White" Background="#FF06D4E2" BorderThickness="0,0,0,0"
-                FontSize="10" HorizontalAlignment="Left" Width="62" Click="btnAddFood_Click" />
+                FontSize="10" HorizontalAlignment="Left" Width="62" Click="AddFoodButton_OnClick" />
         <TextBox  x:Name="TicketCostTb" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="129,285,0,0" Grid.Row="1"
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Background="#FFE6E6E6" BorderBrush="#FFDDDDDD"
                  FontFamily="Century Gothic" Padding="7,5,1,1" BorderThickness="0,0,0,0" Foreground="#FF003981"
@@ -118,8 +118,8 @@
                  Text="0" TextAlignment="Center" TextChanged="PercentTb_OnTextChanged" />
 
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="70,360,360,0">
-            <Button HorizontalAlignment="Left" Height="50" Content="Save" Click="Button_Click_1" Foreground="White" Background="#2a9299" BorderThickness="0" Width="100" Margin="0,0,20,0"/>
-            <Button HorizontalAlignment="Left" Height="50" Content="New" Click="ButtonBase_OnClick"  Foreground="White" Background="#2a9299" BorderThickness="0" Width="100"/>
+            <Button HorizontalAlignment="Left" Height="50" Content="Save" Click="SaveTripButton_OnClick" Foreground="White" Background="#2a9299" BorderThickness="0" Width="100" Margin="0,0,20,0"/>
+            <Button HorizontalAlignment="Left" Height="50" Content="New" Click="CreateNewTripButton_OnClick"  Foreground="White" Background="#2a9299" BorderThickness="0" Width="100"/>
         </StackPanel>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="27" Margin="228,372,0,0" Grid.Row="1"
                    TextWrapping="Wrap" VerticalAlignment="Top" Width="19" FontFamily="Century Gothic" Text="%"
